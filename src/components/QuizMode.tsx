@@ -108,11 +108,11 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   }
 
   return (
-    <Card className="p-6 flex flex-col items-center space-y-6">
+    <Card className="p-6 flex flex-col items-center space-y-5">
       {/* Confetti animation when correct */}
       <Confetti show={showConfetti} />
       
-      <div className="flex items-center justify-center space-x-2">
+      <div className="flex items-center justify-center space-x-2 mb-1">
         <h2 className="text-2xl font-bold text-foreground">
           {mode === 'dictation' ? 'Listen & Spell' : 'Complete the Word'}
         </h2>
@@ -152,44 +152,110 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
       </div>
       
       {mode === 'partial' && (
-        <div className="flex items-center justify-center w-full">
-          <div className="flex flex-wrap justify-center gap-2 text-3xl font-bold max-w-xs">
-            {partialWord.split('').map((char, index) => (
-              <motion.div 
-                key={index} 
-                initial={{ y: -10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: index * 0.05, duration: 0.3 }}
-                className={`w-8 h-12 flex items-center justify-center border-b-2 border-primary ${char === '_' ? 'text-transparent' : 'text-foreground'}`}
-              >
-                {char}
-              </motion.div>
-            ))}
+        <div className="flex flex-col items-center justify-center w-full">
+          <div className="bg-muted p-4 rounded-lg shadow-inner">
+            <div className="flex flex-wrap justify-center gap-2 text-3xl font-bold max-w-xs">
+              {partialWord.split('').map((char, index) => (
+                <motion.div 
+                  key={index} 
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  className={`w-8 h-12 flex items-center justify-center ${char === '_' ? 'bg-background/50 rounded-md shadow-sm' : ''}`}
+                >
+                  {char === '_' ? '?' : char}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Visual connector */}
+          <div className="h-8 w-6 flex justify-center">
+            <div className="w-0.5 h-full bg-primary/30"></div>
+          </div>
+          <div className="flex justify-center items-center w-8 h-8 rounded-full bg-primary/15 mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </div>
         </div>
       )}
       
-      <div className="w-full max-w-xs">
-        <Input
-          id="quiz-input"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          placeholder={mode === 'dictation' ? "Type what you hear..." : "Type the full word..."}
-          className="text-center text-lg"
-          disabled={hasSubmitted}
-          autoComplete="off"
-        />
+      <div className="w-full max-w-xs space-y-3">
+        <div className="text-center text-sm font-medium">
+          <motion.div 
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center bg-primary/15 text-primary px-4 py-1.5 rounded-full"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            {mode === 'dictation' ? "Type what you hear" : "Type the complete word"}
+          </motion.div>
+        </div>
+        
+        <motion.div 
+          animate={{ 
+            boxShadow: ['0 0 0 rgba(var(--color-primary-rgb), 0)', '0 0 8px rgba(var(--color-primary-rgb), 0.5)', '0 0 0 rgba(var(--color-primary-rgb), 0)']
+          }}
+          transition={{ 
+            repeat: hasSubmitted ? 0 : 2,
+            duration: 1.5
+          }}
+          className="relative rounded-lg p-0.5 bg-gradient-to-r from-primary/40 via-primary/20 to-primary/40"
+        >
+          <Input
+            id="quiz-input"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder={mode === 'dictation' ? "Type the word here..." : "Type the full word here..."}
+            className="text-center text-lg shadow-none border bg-card/95 placeholder:text-foreground/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0"
+            disabled={hasSubmitted}
+            autoComplete="off"
+            autoFocus
+          />
+        </motion.div>
       </div>
       
       <div className="flex flex-col items-center space-y-4 w-full">
         {!hasSubmitted ? (
-          <motion.div className="w-full max-w-xs" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <motion.div 
+            className="w-full max-w-xs" 
+            whileHover={{ scale: 1.03 }} 
+            whileTap={{ scale: 0.98 }}
+          >
             <Button 
               onClick={handleSubmit}
-              className="w-full"
+              className="w-full font-bold shadow-md"
               disabled={!userInput}
+              size="lg"
             >
-              Submit
+              <motion.div 
+                initial={{ x: 0 }}
+                animate={{ x: userInput ? [0, -3, 3, 0] : 0 }}
+                transition={{ repeat: 0, duration: 0.5 }}
+                className="flex items-center gap-2"
+              >
+                Submit Answer
+                {userInput && (
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                )}
+              </motion.div>
             </Button>
           </motion.div>
         ) : (

@@ -37,6 +37,7 @@
   /* Action colors */
   --primary: oklch(0.68 0.15 250);  /* blue #3498db */
   --primary-foreground: oklch(1 0 0);  /* white #FFFFFF */
+  --primary-rgb: 52, 152, 219;  /* RGB value for blue #3498db */
 
   --secondary: oklch(0.7 0.18 20);  /* coral #FF6B6B */
   --secondary-foreground: oklch(1 0 0);  /* white #FFFFFF */
@@ -73,6 +74,7 @@
   /* Action colors */
   --primary: oklch(0.65 0.15 250);  /* blue #4299E1 */
   --primary-foreground: oklch(0.1 0.01 250);  /* very dark blue */
+  --primary-rgb: 66, 153, 225;  /* RGB value for blue #4299E1 */
 
   --secondary: oklch(0.65 0.15 20);  /* coral #F56565 */
   --secondary-foreground: oklch(0.1 0.01 250);  /* very dark blue */

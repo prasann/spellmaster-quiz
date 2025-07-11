@@ -27,7 +27,8 @@
 2. **Partial Spelling Mode**
    - Functionality: Shows a word with some letters missing to help with recognition, requiring the child to type the full word
    - Purpose: Provides scaffolding for learning difficult words while reinforcing complete spelling
-   - Success criteria: Clear visual presentation with accurate scoring
+   - Success criteria: Clear visual presentation with intuitive connections between the partial word display and input field, with accurate scoring
+   - Enhancements: Visual connector elements and clearer input labeling to guide users to the text entry field
 
 3. **Scoring System**
    - Functionality: Tracks correct/incorrect answers for the session
@@ -102,6 +103,8 @@
 - **Contextual Appropriateness**: Playful but not distracting animations that reinforce learning
 - **Celebrations**: Confetti and star animations to celebrate correct answers
 - **Feedback Animation**: Words animate in sequence when displayed, score pulses when increased
+- **Input Guidance**: Subtle pulse animations on input fields to draw attention, arrow indicators to guide the user's eye from the word display to the input area
+- **Button Feedback**: Motion effects on buttons to increase perceived responsiveness and engagement
 
 ### UI Elements & Component Selection
 - **Component Usage**: Cards for quiz content, buttons for actions, modal for results
@@ -111,6 +114,8 @@
 - **Component Hierarchy**: Quiz content > input area > navigation buttons
 - **Spacing System**: Consistent padding using Tailwind's spacing scale (4, 6, 8)
 - **Mobile Adaptation**: Full-screen experience on mobile, contained frame on larger devices
+- **Input Fields**: Highlighted with subtle gradients, attention-drawing animations, and clear instructional labels
+- **Submit Controls**: Visually prominent with encouraging iconography and subtle motion cues
 
 ## Visual Consistency Framework
 - **Design System Approach**: Component-based design for consistency
@@ -119,10 +124,12 @@
 - **Brand Alignment**: Educational but fun aesthetic
 - **Theme Support**: Light and dark mode options for different usage environments and preferences
 - **UI Enhancement**: Hidden scrollbars for cleaner visual appearance while maintaining scroll functionality
+- **Input Clarity**: Visual cues like arrows and background containers to clarify the relationship between displayed word patterns and input fields
 
 ### Accessibility & Readability
 - **Contrast Goal**: WCAG AA compliance for all text elements in both light and dark themes
 - **Theme Adaptation**: Ensure all components maintain visibility and functionality across themes
+- **Interactive Guidance**: Clear visual affordances and micro-animations that guide users toward input fields and action buttons
 
 ## Edge Cases & Problem Scenarios
 - **Potential Obstacles**: Audio playback issues, spelling variations
@@ -133,7 +140,11 @@
 - **Scalability Needs**: Potential to add more vocabulary or difficulty levels
 - **Testing Focus**: Test with actual children to validate engagement and difficulty
 - **Critical Questions**: What word length and complexity is appropriate for the target age?
-- **Bug Fixes**: Fixed comparison logic in Partial Spelling Mode to correctly validate user input against the full word
+- **Bug Fixes**: 
+  - Fixed comparison logic in Partial Spelling Mode to correctly validate user input against the full word
+  - Improved UI clarity by adding visual connectors between partial word display and input field
+  - Enhanced input field with visual cues to make it more obvious where to type answers
+  - Added directional guidance with arrow indicators and prominent instruction labels
 
 ## Reflection
 - This approach uniquely combines audio and visual learning modalities with contextual hints, catering to different learning styles.
