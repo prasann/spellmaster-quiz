@@ -163,7 +163,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
                   transition={{ delay: index * 0.05, duration: 0.3 }}
                   className={`w-8 h-12 flex items-center justify-center ${char === '_' ? 'bg-background/50 rounded-md shadow-sm' : ''}`}
                 >
-                  {char === '_' ? '?' : char}
+                  {char === '_' ? '-' : char}
                 </motion.div>
               ))}
             </div>
