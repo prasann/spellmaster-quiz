@@ -62,36 +62,36 @@
 
 [data-theme="dark"] {
   /* Base colors */
-  --background: #ffffff;  /* dark blue */
-  --foreground: #0f1419;  /* off-white */
+  --background: #15202b;  /* dark blue */
+  --foreground: #f8f9fa;  /* off-white */
 
-  --card: #f7f8f8;  /* slightly lighter dark blue */
-  --card-foreground: #0f1419;  /* off-white */
+  --card: #1e2732;  /* slightly lighter dark blue */
+  --card-foreground: #f8f9fa;  /* off-white */
 
-  --popover: #ffffff;  /* slightly lighter dark blue */
-  --popover-foreground: #0f1419;  /* off-white */
+  --popover: #1e2732;  /* slightly lighter dark blue */
+  --popover-foreground: #f8f9fa;  /* off-white */
 
   /* Action colors */
-  --primary: #1e9df1;  /* blue */
+  --primary: #1a91da;  /* blue */
   --primary-foreground: #ffffff;  /* white */
-  --primary-rgb: 66, 153, 225;  /* RGB value for blue #4299E1 */
+  --primary-rgb: 26, 145, 218;  /* RGB value for blue */
 
-  --secondary: #0f1419;  /* coral */
+  --secondary: #794bc4;  /* purple */
   --secondary-foreground: #ffffff;  /* white */
 
-  --accent: #E3ECF6;  /* green */
-  --accent-foreground: #1e9df1;  /* white */
+  --accent: #2a3c4d;  /* darker blue accent */
+  --accent-foreground: #1a91da;  /* blue */
 
-  --destructive: #f4212e;  /* red */
+  --destructive: #e0245e;  /* red */
   --destructive-foreground: #ffffff;  /* white */
 
   /* Supporting UI colors */
-  --muted: #E5E5E6;  /* dark gray */
-  --muted-foreground: #0f1419;  /* light gray */
+  --muted: #38444d;  /* dark gray */
+  --muted-foreground: #8899a6;  /* light gray */
 
-  --border: #e1eaef;  /* border for dark mode */
-  --input: #f7f9fa;  /* input border for dark mode */
-  --ring: #1da1f2;  /* blue */
+  --border: #38444d;  /* border for dark mode */
+  --input: #253341;  /* input border for dark mode */
+  --ring: #1a91da;  /* blue */
 }
 
 @theme {
