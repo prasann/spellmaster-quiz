@@ -66,8 +66,14 @@ export function isPartialWordCorrect(userInput: string, word: string, partialWor
 // Convert text to speech
 export function speakWord(word: string) {
   if ('speechSynthesis' in window) {
+    // Cancel any ongoing speech first
+    window.speechSynthesis.cancel()
+    
+    // Create a new utterance with the word
     const utterance = new SpeechSynthesisUtterance(word)
     utterance.rate = 0.8 // Slightly slower for clarity
+    
+    // Speak the word once
     window.speechSynthesis.speak(utterance)
     return true
   }

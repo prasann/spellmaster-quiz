@@ -28,17 +28,31 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
 
   // Initialize or get next word
   useEffect(() => {
-    getNextWord()
+    const cleanup = getNextWord()
+    return () => {
+      if (cleanup) cleanup()
+      // Always cancel any speech when component unmounts
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel()
+      }
+    }
   }, [])
 
   const getNextWord = () => {
-    const wordItem = getRandomWord()
-    const newWord = wordItem.word
+    // Cancel any previous speech
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel()
+    }
+    
+    let attempts = 0
+    let wordItem = getRandomWord()
+    let newWord = wordItem.word
     
     // Avoid repeating words in the same session
-    if (wordHistory.includes(newWord) && wordHistory.length < 15) {
-      getNextWord()
-      return
+    while (wordHistory.includes(newWord) && wordHistory.length < 15 && attempts < 5) {
+      wordItem = getRandomWord()
+      newWord = wordItem.word
+      attempts++
     }
     
     setCurrentWord(newWord)
@@ -62,9 +76,13 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
     
     // If dictation mode, speak the word
     if (mode === 'dictation') {
-      setTimeout(() => {
+      // Add a small delay before speaking
+      const speakTimeout = setTimeout(() => {
+        console.log(`Speaking word: "${newWord}"`)
         speakWord(newWord)
       }, 500)
+      
+      return () => clearTimeout(speakTimeout)
     }
   }
 
@@ -100,6 +118,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   }
 
   const handleSpeak = () => {
+    console.log(`Speaking word: "${currentWord}"`)
     speakWord(currentWord)
   }
 
