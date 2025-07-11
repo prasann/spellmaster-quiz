@@ -25,9 +25,9 @@
    - Success criteria: Clear audio pronunciation and accurate scoring
 
 2. **Partial Spelling Mode**
-   - Functionality: Shows a word with some letters pre-filled, requiring direct input of missing letters
+   - Functionality: Shows a word with some letters missing, requiring the child to type the missing letters in a text field
    - Purpose: Provides scaffolding for learning difficult words
-   - Success criteria: Appropriate difficulty level and interactive letter input
+   - Success criteria: Appropriate difficulty level with user-friendly text input
 
 3. **Scoring System**
    - Functionality: Tracks correct/incorrect answers for the session
@@ -105,12 +105,13 @@
 - **Spacing System**: Consistent padding using Tailwind's spacing scale (4, 6, 8)
 - **Mobile Adaptation**: Full-screen experience on mobile, contained frame on larger devices
 
-### Visual Consistency Framework
+## Visual Consistency Framework
 - **Design System Approach**: Component-based design for consistency
 - **Style Guide Elements**: Colors, typography, spacing, and component styles
 - **Visual Rhythm**: Consistent padding and alignment throughout
 - **Brand Alignment**: Educational but fun aesthetic
 - **Theme Support**: Light and dark mode options for different usage environments and preferences
+- **UI Enhancement**: Hidden scrollbars for cleaner visual appearance while maintaining scroll functionality
 
 ### Accessibility & Readability
 - **Contrast Goal**: WCAG AA compliance for all text elements in both light and dark themes
