@@ -6,16 +6,23 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+// Type definition for vocabulary items
+interface VocabularyItem {
+  word: string;
+  difficulty: string;
+  hint: string;
+}
+
 // Get a random word from the vocabulary based on difficulty (optional)
-export function getRandomWord(difficulty?: string) {
-  let filteredVocabulary = vocabulary
+export function getRandomWord(difficulty?: string): VocabularyItem {
+  let filteredVocabulary = vocabulary as VocabularyItem[]
   
   if (difficulty) {
-    filteredVocabulary = vocabulary.filter(item => item.difficulty === difficulty)
+    filteredVocabulary = filteredVocabulary.filter(item => item.difficulty === difficulty)
   }
   
   const randomIndex = Math.floor(Math.random() * filteredVocabulary.length)
-  return filteredVocabulary[randomIndex].word
+  return filteredVocabulary[randomIndex]
 }
 
 // Get a partially filled word by hiding some random letters

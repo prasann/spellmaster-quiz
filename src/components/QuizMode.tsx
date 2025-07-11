@@ -3,7 +3,7 @@ import { useKV } from '@github/spark/hooks'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Input } from './ui/input'
-import { SpeakerHighIcon } from './Icons'
+import { SpeakerHighIcon, LightbulbIcon } from './Icons'
 import { getRandomWord, getPartialWord, speakWord } from '../lib/utils'
 import { motion } from 'framer-motion'
 import Confetti from './Confetti'
@@ -17,12 +17,14 @@ interface QuizModeProps {
 
 export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: QuizModeProps) {
   const [currentWord, setCurrentWord] = useState('')
+  const [currentHint, setCurrentHint] = useState('')
   const [partialWord, setPartialWord] = useState('')
   const [userInput, setUserInput] = useState('')
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [wordHistory, setWordHistory] = useKV('quiz-word-history', [] as string[])
   const [showConfetti, setShowConfetti] = useState(false)
+  const [showHint, setShowHint] = useState(false)
 
   // Initialize or get next word
   useEffect(() => {
@@ -30,7 +32,8 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   }, [])
 
   const getNextWord = () => {
-    const newWord = getRandomWord()
+    const wordItem = getRandomWord()
+    const newWord = wordItem.word
     
     // Avoid repeating words in the same session
     if (wordHistory.includes(newWord) && wordHistory.length < 15) {
@@ -39,11 +42,13 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
     }
     
     setCurrentWord(newWord)
+    setCurrentHint(wordItem.hint)
     setPartialWord(mode === 'partial' ? getPartialWord(newWord, 0.5) : '')
     setUserInput('')
     setIsCorrect(null)
     setHasSubmitted(false)
     setShowConfetti(false)
+    setShowHint(false)
     
     // Add to history
     setWordHistory(current => {
@@ -98,6 +103,10 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
     speakWord(currentWord)
   }
 
+  const toggleHint = () => {
+    setShowHint(current => !current)
+  }
+
   return (
     <Card className="p-6 flex flex-col items-center space-y-6">
       {/* Confetti animation when correct */}
@@ -116,6 +125,29 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
           >
             <SpeakerHighIcon size={24} />
           </Button>
+        )}
+      </div>
+      
+      {/* Hint section */}
+      <div className="w-full flex flex-col items-center">
+        <Button 
+          variant="ghost" 
+          size="sm"
+          onClick={toggleHint}
+          className="flex items-center gap-1 text-muted-foreground hover:text-foreground"
+        >
+          <LightbulbIcon size={18} />
+          {showHint ? 'Hide Hint' : 'Show Hint'}
+        </Button>
+        
+        {showHint && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-2 text-center italic text-sm text-muted-foreground px-4"
+          >
+            Hint: {currentHint}
+          </motion.div>
         )}
       </div>
       

@@ -1,5 +1,14 @@
 import React from 'react';
-import { Home as HouseIconLucide, Volume2 as SpeakerHighIconLucide, PencilLine as PencilIconLucide, Moon as MoonIconLucide, Sun as SunIconLucide, Award as TrophyIconLucide, RotateCw as ArrowsClockwiseIconLucide } from "lucide-react";
+import { 
+  Home as HouseIconLucide, 
+  Volume2 as SpeakerHighIconLucide, 
+  PencilLine as PencilIconLucide, 
+  Moon as MoonIconLucide, 
+  Sun as SunIconLucide, 
+  Award as TrophyIconLucide, 
+  RotateCw as ArrowsClockwiseIconLucide,
+  Lightbulb as LightbulbIconLucide 
+} from "lucide-react";
 
 interface IconProps {
   size?: number;
@@ -33,4 +42,8 @@ export function TrophyIcon({ size = 24, className = "" }: IconProps) {
 
 export function ArrowsClockwiseIcon({ size = 24, className = "" }: IconProps) {
   return <ArrowsClockwiseIconLucide size={size} className={className} />;
+}
+
+export function LightbulbIcon({ size = 24, className = "" }: IconProps) {
+  return <LightbulbIconLucide size={size} className={className} />;
 }

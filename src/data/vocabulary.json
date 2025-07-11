@@ -1,82 +1,102 @@
 [
   {
     "word": "apple",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "hint": "A red or green fruit that grows on trees"
   },
   {
     "word": "banana",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "hint": "A long yellow fruit with a peel"
   },
   {
     "word": "orange",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "hint": "A round citrus fruit named after its color"
   },
   {
     "word": "elephant",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "hint": "A large gray animal with a long trunk"
   },
   {
     "word": "giraffe",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "hint": "An animal with a very long neck"
   },
   {
     "word": "bicycle",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "hint": "A vehicle with two wheels that you pedal"
   },
   {
     "word": "dinosaur",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "hint": "Ancient reptiles that lived millions of years ago"
   },
   {
     "word": "beautiful",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "Something that looks very pretty or attractive"
   },
   {
     "word": "chocolate",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "A sweet brown food made from cocoa beans"
   },
   {
     "word": "umbrella",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "You use this to keep dry when it rains"
   },
   {
     "word": "calendar",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "Shows the days, weeks, and months of the year"
   },
   {
     "word": "butterfly",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "hint": "An insect with colorful wings that can fly"
   },
   {
     "word": "strawberry",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "A sweet red fruit with seeds on the outside"
   },
   {
     "word": "computer",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "hint": "An electronic device used to process information"
   },
   {
     "word": "knowledge",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "Information and skills gained through learning"
   },
   {
     "word": "vacation",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "A period spent away from home for enjoyment"
   },
   {
     "word": "sandwich",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "hint": "Food with fillings between two pieces of bread"
   },
   {
     "word": "happiness",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "The feeling of being happy"
   },
   {
     "word": "playground",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "An outdoor area where children can play"
   },
   {
     "word": "television",
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "hint": "A device that shows moving pictures and sound"
   }
 ]

@@ -35,11 +35,16 @@
    - Success criteria: Clear, encouraging feedback that motivates continued play
 
 4. **Vocabulary Management**
-   - Functionality: Words stored in JSON format, randomly selected for quizzes
-   - Purpose: Ensures variety and appropriate difficulty
+   - Functionality: Words stored in JSON format with difficulty levels and hints, randomly selected for quizzes
+   - Purpose: Ensures variety and appropriate difficulty with contextual support
    - Success criteria: Diverse word selection that challenges without frustrating
 
-5. **Theme Switching**
+5. **Hint System**
+   - Functionality: Optional hints that provide context or meaning for each word
+   - Purpose: Helps children connect spelling with meaning and offers support without giving away the answer
+   - Success criteria: Relevant hints that aid learning without making the quiz too easy
+
+6. **Theme Switching**
    - Functionality: Toggle between light and dark mode
    - Purpose: Accommodates different lighting conditions and preferences
    - Success criteria: Clear visual distinction between modes with consistent usability
@@ -121,7 +126,7 @@
 
 ## Edge Cases & Problem Scenarios
 - **Potential Obstacles**: Audio playback issues, spelling variations
-- **Edge Case Handling**: Allow multiple attempts, provide hints after incorrect tries
+- **Edge Case Handling**: Allow multiple attempts, provide contextual hints for difficult words
 - **Technical Constraints**: Mobile browser compatibility, audio performance
 
 ## Implementation Considerations
@@ -131,6 +136,6 @@
 - **Bug Fixes**: Fixed comparison logic in Partial Spelling Mode to correctly validate user input against the full word
 
 ## Reflection
-- This approach uniquely combines audio and visual learning modalities, catering to different learning styles.
+- This approach uniquely combines audio and visual learning modalities with contextual hints, catering to different learning styles.
 - We've assumed a specific difficulty level that may need adjustment based on user feedback.
 - Adding customizable word lists or difficulty progression would make this solution truly exceptional.
