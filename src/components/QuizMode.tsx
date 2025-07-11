@@ -5,6 +5,8 @@ import { Card } from './ui/card'
 import { Input } from './ui/input'
 import { SpeakerHighIcon } from './Icons'
 import { getRandomWord, getPartialWord, speakWord } from '../lib/utils'
+import { motion } from 'framer-motion'
+import Confetti from './Confetti'
 
 interface QuizModeProps {
   mode: 'dictation' | 'partial'
@@ -20,6 +22,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [wordHistory, setWordHistory] = useKV('quiz-word-history', [] as string[])
+  const [showConfetti, setShowConfetti] = useState(false)
 
   // Initialize or get next word
   useEffect(() => {
@@ -40,6 +43,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
     setUserInput('')
     setIsCorrect(null)
     setHasSubmitted(false)
+    setShowConfetti(false)
     
     // Add to history
     setWordHistory(current => {
@@ -80,6 +84,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
     
     if (isAnswerCorrect) {
       onCorrectAnswer();
+      setShowConfetti(true);
     } else {
       onWrongAnswer();
     }
@@ -96,6 +101,9 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
 
   return (
     <Card className="p-6 flex flex-col items-center space-y-6">
+      {/* Confetti animation when correct */}
+      <Confetti show={showConfetti} />
+      
       <div className="flex items-center justify-center space-x-2">
         <h2 className="text-2xl font-bold text-foreground">
           {mode === 'dictation' ? 'Listen & Spell' : 'Complete the Word'}
@@ -116,12 +124,15 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
         <div className="flex items-center justify-center w-full">
           <div className="flex flex-wrap justify-center gap-2 text-3xl font-bold max-w-xs">
             {partialWord.split('').map((char, index) => (
-              <div 
+              <motion.div 
                 key={index} 
+                initial={{ y: -10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: index * 0.05, duration: 0.3 }}
                 className={`w-8 h-12 flex items-center justify-center border-b-2 border-primary ${char === '_' ? 'text-transparent' : 'text-foreground'}`}
               >
                 {char}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -141,25 +152,37 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
       
       <div className="flex flex-col items-center space-y-4 w-full">
         {!hasSubmitted ? (
-          <Button 
-            onClick={handleSubmit}
-            className="w-full max-w-xs"
-            disabled={!userInput}
-          >
-            Submit
-          </Button>
+          <motion.div className="w-full max-w-xs" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Button 
+              onClick={handleSubmit}
+              className="w-full"
+              disabled={!userInput}
+            >
+              Submit
+            </Button>
+          </motion.div>
         ) : (
           <>
-            <div className={`text-xl font-bold ${isCorrect ? 'text-accent' : 'text-destructive'}`}>
-              {isCorrect ? 'Correct!' : `Oops! The word was "${currentWord}"`}
-            </div>
-            <Button 
-              onClick={handleNext}
-              className="w-full max-w-xs"
-              variant={isCorrect ? "outline" : "secondary"}
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ 
+                scale: isCorrect ? [0.8, 1.2, 1] : 1, 
+                y: isCorrect ? [0, -10, 0] : 0 
+              }}
+              transition={{ duration: 0.5 }}
+              className={`text-xl font-bold ${isCorrect ? 'text-accent' : 'text-destructive'}`}
             >
-              Next Word
-            </Button>
+              {isCorrect ? 'Correct!' : `Oops! The word was "${currentWord}"`}
+            </motion.div>
+            <motion.div className="w-full max-w-xs" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button 
+                onClick={handleNext}
+                className="w-full"
+                variant={isCorrect ? "outline" : "secondary"}
+              >
+                Next Word
+              </Button>
+            </motion.div>
           </>
         )}
       </div>

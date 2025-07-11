@@ -95,6 +95,8 @@
 - **Purposeful Meaning**: Subtle animations to reward correct answers and encourage after incorrect ones
 - **Hierarchy of Movement**: Primary animations for quiz feedback, secondary for transitions
 - **Contextual Appropriateness**: Playful but not distracting animations that reinforce learning
+- **Celebrations**: Confetti and star animations to celebrate correct answers
+- **Feedback Animation**: Words animate in sequence when displayed, score pulses when increased
 
 ### UI Elements & Component Selection
 - **Component Usage**: Cards for quiz content, buttons for actions, modal for results

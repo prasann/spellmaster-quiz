@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card } from './ui/card'
 import { Progress } from './ui/progress'
 import { Trophy, ArrowsClockwise } from '@phosphor-icons/react'
+import { motion, useAnimate } from 'framer-motion'
 
 interface ScoreDisplayProps {
   correct: number
@@ -11,6 +12,19 @@ interface ScoreDisplayProps {
 
 export function ScoreDisplay({ correct, total, onReset }: ScoreDisplayProps) {
   const percentage = total > 0 ? Math.round((correct / total) * 100) : 0
+  const [prevCorrect, setPrevCorrect] = useState(correct)
+  const [scope, animate] = useAnimate()
+  
+  useEffect(() => {
+    if (correct > prevCorrect) {
+      // Animate the score when it increases
+      animate(scope.current, 
+        { scale: [1, 1.2, 1], color: ['#000', '#06D6A0', '#000'] }, 
+        { duration: 0.5 }
+      )
+    }
+    setPrevCorrect(correct)
+  }, [correct, animate, prevCorrect])
   
   let message = ''
   if (total === 0) {
@@ -46,15 +60,22 @@ export function ScoreDisplay({ correct, total, onReset }: ScoreDisplayProps) {
       
       <div className="flex flex-col space-y-2">
         <div className="flex justify-between text-sm">
-          <span className="font-medium text-foreground">{correct} correct</span>
+          <span className="font-medium text-foreground">
+            <motion.span ref={scope}>{correct}</motion.span> correct
+          </span>
           <span className="text-muted-foreground">{total} total</span>
         </div>
         
         <Progress value={percentage} className="h-2" />
         
-        <div className="text-center text-sm font-medium mt-1">
+        <motion.div 
+          className="text-center text-sm font-medium mt-1"
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           {message}
-        </div>
+        </motion.div>
       </div>
     </Card>
   )
