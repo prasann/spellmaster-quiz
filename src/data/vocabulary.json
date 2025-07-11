@@ -1,0 +1,82 @@
+[
+  {
+    "word": "apple",
+    "difficulty": "easy"
+  },
+  {
+    "word": "banana",
+    "difficulty": "easy"
+  },
+  {
+    "word": "orange",
+    "difficulty": "easy"
+  },
+  {
+    "word": "elephant",
+    "difficulty": "medium"
+  },
+  {
+    "word": "giraffe",
+    "difficulty": "medium"
+  },
+  {
+    "word": "bicycle",
+    "difficulty": "medium"
+  },
+  {
+    "word": "dinosaur",
+    "difficulty": "medium"
+  },
+  {
+    "word": "beautiful",
+    "difficulty": "hard"
+  },
+  {
+    "word": "chocolate",
+    "difficulty": "hard"
+  },
+  {
+    "word": "umbrella",
+    "difficulty": "hard"
+  },
+  {
+    "word": "calendar",
+    "difficulty": "hard"
+  },
+  {
+    "word": "butterfly",
+    "difficulty": "medium"
+  },
+  {
+    "word": "strawberry",
+    "difficulty": "hard"
+  },
+  {
+    "word": "computer",
+    "difficulty": "medium"
+  },
+  {
+    "word": "knowledge",
+    "difficulty": "hard"
+  },
+  {
+    "word": "vacation",
+    "difficulty": "hard"
+  },
+  {
+    "word": "sandwich",
+    "difficulty": "medium"
+  },
+  {
+    "word": "happiness",
+    "difficulty": "hard"
+  },
+  {
+    "word": "playground",
+    "difficulty": "hard"
+  },
+  {
+    "word": "television",
+    "difficulty": "hard"
+  }
+]

@@ -1,1 +1,79 @@
-/* This is where custom CSS goes */
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: 'Open Sans', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', sans-serif;
+  }
+}
+
+:root {
+  /* Base colors */
+  --background: oklch(0.97 0.01 83);  /* light cream #FFF9F0 */
+  --foreground: oklch(0.3 0.05 250);  /* dark blue #2C3E50 */
+
+  --card: oklch(1 0 0);  /* white #FFFFFF */
+  --card-foreground: oklch(0.3 0.05 250);  /* dark blue #2C3E50 */
+
+  --popover: oklch(1 0 0);  /* white #FFFFFF */
+  --popover-foreground: oklch(0.3 0.05 250);  /* dark blue #2C3E50 */
+
+  /* Action colors */
+  --primary: oklch(0.68 0.15 250);  /* blue #3498db */
+  --primary-foreground: oklch(1 0 0);  /* white #FFFFFF */
+
+  --secondary: oklch(0.7 0.18 20);  /* coral #FF6B6B */
+  --secondary-foreground: oklch(1 0 0);  /* white #FFFFFF */
+
+  --accent: oklch(0.8 0.22 160);  /* green #06D6A0 */
+  --accent-foreground: oklch(1 0 0);  /* white #FFFFFF */
+
+  --destructive: oklch(0.65 0.18 20);  /* red #E74C3C */
+  --destructive-foreground: oklch(1 0 0);  /* white #FFFFFF */
+
+  /* Supporting UI colors */
+  --muted: oklch(0.97 0.01 83);  /* light gray #F8F9FA */
+  --muted-foreground: oklch(0.5 0.02 250);  /* medium gray #6C757D */
+
+  --border: oklch(0.9 0.02 250);  /* light border #DEE2E6 */
+  --input: oklch(0.8 0.02 250);  /* input border #CED4DA */
+  --ring: oklch(0.68 0.15 250);  /* blue #3498db */
+
+  /* Border radius */
+  --radius: 1rem;  /* Rounded corners for child-friendly UI */
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2);
+  --radius-2xl: calc(var(--radius) * 3);
+  --radius-full: 9999px;
+}
