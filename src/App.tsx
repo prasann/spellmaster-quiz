@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useKV } from '@github/spark/hooks'
 import { Button } from './components/ui/button'
 import { Card } from './components/ui/card'
@@ -9,11 +9,17 @@ import ScoreDisplay from './components/ScoreDisplay'
 import { HouseIcon } from './components/Icons'
 import { ThemeProvider } from './components/ThemeProvider'
 import ThemeToggle from './components/ThemeToggle'
+import { initSpeechSynthesis } from './lib/utils'
 
 function AppContent() {
   const [quizMode, setQuizMode] = useState<'dictation' | 'partial' | null>(null)
   const [score, setScore] = useKV('quiz-score', { correct: 0, total: 0 })
   const [isActive, setIsActive] = useState(false)
+  
+  // Initialize speech synthesis when app loads
+  useEffect(() => {
+    initSpeechSynthesis()
+  }, [])
 
   const handleSelectMode = (mode: 'dictation' | 'partial') => {
     setQuizMode(mode)

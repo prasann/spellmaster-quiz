@@ -4,7 +4,7 @@ import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Input } from './ui/input'
 import { SpeakerHighIcon, LightbulbIcon } from './Icons'
-import { getRandomWord, getPartialWord, speakWord } from '../lib/utils'
+import { getRandomWord, getPartialWord, speakWord, initSpeechSynthesis } from '../lib/utils'
 import { motion } from 'framer-motion'
 import Confetti from './Confetti'
 
@@ -26,20 +26,27 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   const [showConfetti, setShowConfetti] = useState(false)
   const [showHint, setShowHint] = useState(false)
 
+  // Initialize speech synthesis
+  useEffect(() => {
+    // Initialize speech synthesis when component mounts
+    initSpeechSynthesis()
+  }, [])
+
   // Initialize or get next word
   useEffect(() => {
     const cleanup = getNextWord()
+    
     return () => {
       if (cleanup) cleanup()
-      // Always cancel any speech when component unmounts
+      // Always make sure speech is cancelled when component unmounts
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel()
       }
     }
-  }, [])
+  }, [mode]) // Reset word when mode changes
 
   const getNextWord = () => {
-    // Cancel any previous speech
+    // First, ensure any previous speech is completely cancelled
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel()
     }
@@ -74,13 +81,13 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
       return updatedHistory
     })
     
-    // If dictation mode, speak the word
+    // If dictation mode, speak the word after a longer delay
     if (mode === 'dictation') {
-      // Add a small delay before speaking
+      // Add a longer delay before speaking to ensure previous speech is fully cleared
       const speakTimeout = setTimeout(() => {
         console.log(`Speaking word: "${newWord}"`)
         speakWord(newWord)
-      }, 500)
+      }, 800) // Increased delay to 800ms
       
       return () => clearTimeout(speakTimeout)
     }
@@ -118,8 +125,16 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   }
 
   const handleSpeak = () => {
-    console.log(`Speaking word: "${currentWord}"`)
-    speakWord(currentWord)
+    // First ensure any ongoing speech is fully canceled
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel()
+    }
+    
+    // Add a small delay before speaking to ensure clean start
+    setTimeout(() => {
+      console.log(`Speaking word: "${currentWord}"`)
+      speakWord(currentWord)
+    }, 100)
   }
 
   const toggleHint = () => {
