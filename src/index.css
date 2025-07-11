@@ -62,36 +62,36 @@
 
 [data-theme="dark"] {
   /* Base colors */
-  --background: #ffffff;  /* dark blue #1A202C */
-  --foreground: #333333;  /* off-white #F7FAFC */
+  --background: #1A202C;  /* dark blue */
+  --foreground: #F7FAFC;  /* off-white */
 
-  --card: #ffffff;  /* slightly lighter dark blue #2D3748 */
-  --card-foreground: #333333;  /* off-white #F7FAFC */
+  --card: #2D3748;  /* slightly lighter dark blue */
+  --card-foreground: #F7FAFC;  /* off-white */
 
-  --popover: #ffffff;  /* slightly lighter dark blue #2D3748 */
-  --popover-foreground: #333333;  /* off-white #F7FAFC */
+  --popover: #2D3748;  /* slightly lighter dark blue */
+  --popover-foreground: #F7FAFC;  /* off-white */
 
   /* Action colors */
-  --primary: #3b82f6;  /* blue #4299E1 */
-  --primary-foreground: #ffffff;  /* very dark blue */
+  --primary: #4299E1;  /* blue */
+  --primary-foreground: #ffffff;  /* white */
   --primary-rgb: 66, 153, 225;  /* RGB value for blue #4299E1 */
 
-  --secondary: #f3f4f6;  /* coral #F56565 */
-  --secondary-foreground: #4b5563;  /* very dark blue */
+  --secondary: #F56565;  /* coral */
+  --secondary-foreground: #ffffff;  /* white */
 
-  --accent: #e0f2fe;  /* green #48BB78 */
-  --accent-foreground: #1e3a8a;  /* very dark blue */
+  --accent: #48BB78;  /* green */
+  --accent-foreground: #ffffff;  /* white */
 
-  --destructive: #ef4444;  /* red #E53E3E */
-  --destructive-foreground: #ffffff;  /* very dark blue */
+  --destructive: #E53E3E;  /* red */
+  --destructive-foreground: #ffffff;  /* white */
 
   /* Supporting UI colors */
-  --muted: #f9fafb;  /* dark gray #4A5568 */
-  --muted-foreground: #6b7280;  /* light gray #A0AEC0 */
+  --muted: #4A5568;  /* dark gray */
+  --muted-foreground: #A0AEC0;  /* light gray */
 
-  --border: #e5e7eb;  /* border for dark mode #4A5568 */
-  --input: #e5e7eb;  /* input border for dark mode */
-  --ring: #3b82f6;  /* blue #4299E1 */
+  --border: #4A5568;  /* border for dark mode */
+  --input: #4A5568;  /* input border for dark mode */
+  --ring: #4299E1;  /* blue */
 }
 
 @theme {
