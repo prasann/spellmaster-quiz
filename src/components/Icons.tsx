@@ -1,9 +1,10 @@
 import React from 'react';
-import { Home as HouseIconLucide, VolumeUp as SpeakerHighIconLucide, PencilLine as PencilIconLucide, Moon as MoonIconLucide, Sun as SunIconLucide } from "lucide-react";
+import { Home as HouseIconLucide, VolumeUp as SpeakerHighIconLucide, PencilLine as PencilIconLucide, Moon as MoonIconLucide, Sun as SunIconLucide, Award as TrophyIconLucide, RotateCw as ArrowsClockwiseIconLucide } from "lucide-react";
 
 interface IconProps {
   size?: number;
   className?: string;
+  weight?: string;
 }
 
 export function HouseIcon({ size = 24, className = "" }: IconProps) {
@@ -24,4 +25,12 @@ export function MoonIcon({ size = 24, className = "" }: IconProps) {
 
 export function SunIcon({ size = 24, className = "" }: IconProps) {
   return <SunIconLucide size={size} className={className} />;
+}
+
+export function TrophyIcon({ size = 24, className = "" }: IconProps) {
+  return <TrophyIconLucide size={size} className={className} />;
+}
+
+export function ArrowsClockwiseIcon({ size = 24, className = "" }: IconProps) {
+  return <ArrowsClockwiseIconLucide size={size} className={className} />;
 }

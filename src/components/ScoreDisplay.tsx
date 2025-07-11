@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from './ui/card'
 import { Progress } from './ui/progress'
-import { Trophy, ArrowsClockwise } from '@phosphor-icons/react'
+import { TrophyIcon, ArrowsClockwiseIcon } from './Icons'
 import { motion, useAnimate } from 'framer-motion'
 
 interface ScoreDisplayProps {
@@ -43,7 +43,7 @@ export function ScoreDisplay({ correct, total, onReset }: ScoreDisplayProps) {
     <Card className="p-4 shadow-sm">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-lg font-semibold flex items-center gap-2">
-          <Trophy weight="fill" className="text-secondary" />
+          <TrophyIcon className="text-secondary" />
           Score
         </h3>
         
@@ -52,7 +52,7 @@ export function ScoreDisplay({ correct, total, onReset }: ScoreDisplayProps) {
             onClick={onReset}
             className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-sm"
           >
-            <ArrowsClockwise size={16} />
+            <ArrowsClockwiseIcon size={16} />
             Reset
           </button>
         )}
