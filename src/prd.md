@@ -25,9 +25,9 @@
    - Success criteria: Clear audio pronunciation and accurate scoring
 
 2. **Partial Spelling Mode**
-   - Functionality: Shows a word with some letters missing, requiring the child to type the missing letters in a text field
-   - Purpose: Provides scaffolding for learning difficult words
-   - Success criteria: Appropriate difficulty level with user-friendly text input
+   - Functionality: Shows a word with some letters missing to help with recognition, requiring the child to type the full word
+   - Purpose: Provides scaffolding for learning difficult words while reinforcing complete spelling
+   - Success criteria: Clear visual presentation with accurate scoring
 
 3. **Scoring System**
    - Functionality: Tracks correct/incorrect answers for the session
@@ -128,6 +128,7 @@
 - **Scalability Needs**: Potential to add more vocabulary or difficulty levels
 - **Testing Focus**: Test with actual children to validate engagement and difficulty
 - **Critical Questions**: What word length and complexity is appropriate for the target age?
+- **Bug Fixes**: Fixed comparison logic in Partial Spelling Mode to correctly validate user input against the full word
 
 ## Reflection
 - This approach uniquely combines audio and visual learning modalities, catering to different learning styles.

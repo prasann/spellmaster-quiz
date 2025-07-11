@@ -67,16 +67,12 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
     let isAnswerCorrect = false;
     
     if (mode === 'dictation') {
-      isAnswerCorrect = userInput.toLowerCase() === currentWord.toLowerCase();
+      // For dictation mode, direct string comparison
+      isAnswerCorrect = userInput.trim().toLowerCase() === currentWord.toLowerCase();
     } else {
-      // For partial mode, check if the user input matches missing letters
-      const userLetters = userInput.toLowerCase().split('');
-      const missingLetters = currentWord.split('')
-        .filter((_, i) => partialWord[i] === '_')
-        .map(letter => letter.toLowerCase());
-      
-      isAnswerCorrect = missingLetters.length === userLetters.length && 
-        missingLetters.every((letter, i) => letter === userLetters[i]);
+      // For partial mode, check if the user input completes the word correctly
+      // Simply compare with the full word - simpler and more accurate
+      isAnswerCorrect = userInput.trim().toLowerCase() === currentWord.toLowerCase();
     }
     
     setIsCorrect(isAnswerCorrect);
@@ -143,7 +139,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
           id="quiz-input"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder={mode === 'dictation' ? "Type what you hear..." : "Fill in the missing letters..."}
+          placeholder={mode === 'dictation' ? "Type what you hear..." : "Type the full word..."}
           className="text-center text-lg"
           disabled={hasSubmitted}
           autoComplete="off"
