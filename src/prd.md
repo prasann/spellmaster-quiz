@@ -39,6 +39,7 @@
    - Functionality: Words stored in JSON format with difficulty levels and hints, randomly selected for quizzes
    - Purpose: Ensures variety and appropriate difficulty with contextual support
    - Success criteria: Diverse word selection that challenges without frustrating
+   - Updates: Vocabulary focused on shorter words (less than 5 letters) for younger children or beginners
 
 5. **Hint System**
    - Functionality: Optional hints that provide context or meaning for each word
@@ -46,7 +47,7 @@
    - Success criteria: Relevant hints that aid learning without making the quiz too easy
 
 6. **Theme Switching**
-   - Functionality: Toggle between light and dark mode
+   - Functionality: Toggle between light and dark mode with dark mode as default
    - Purpose: Accommodates different lighting conditions and preferences
    - Success criteria: Clear visual distinction between modes with consistent usability
 

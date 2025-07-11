@@ -1,102 +1,102 @@
 [
   {
-    "word": "apple",
+    "word": "cat",
     "difficulty": "easy",
-    "hint": "A red or green fruit that grows on trees"
+    "hint": "A furry pet that purrs"
   },
   {
-    "word": "banana",
+    "word": "dog",
     "difficulty": "easy",
-    "hint": "A long yellow fruit with a peel"
+    "hint": "A pet that barks"
   },
   {
-    "word": "orange",
+    "word": "bat",
     "difficulty": "easy",
-    "hint": "A round citrus fruit named after its color"
+    "hint": "An animal that flies at night"
   },
   {
-    "word": "elephant",
-    "difficulty": "medium",
-    "hint": "A large gray animal with a long trunk"
+    "word": "hat",
+    "difficulty": "easy",
+    "hint": "You wear it on your head"
   },
   {
-    "word": "giraffe",
-    "difficulty": "medium",
-    "hint": "An animal with a very long neck"
+    "word": "sun",
+    "difficulty": "easy",
+    "hint": "It shines in the sky during day"
   },
   {
-    "word": "bicycle",
-    "difficulty": "medium",
-    "hint": "A vehicle with two wheels that you pedal"
+    "word": "moon",
+    "difficulty": "easy",
+    "hint": "You see it in the night sky"
   },
   {
-    "word": "dinosaur",
-    "difficulty": "medium",
-    "hint": "Ancient reptiles that lived millions of years ago"
+    "word": "star",
+    "difficulty": "easy",
+    "hint": "Twinkles in the night sky"
   },
   {
-    "word": "beautiful",
-    "difficulty": "hard",
-    "hint": "Something that looks very pretty or attractive"
+    "word": "ball",
+    "difficulty": "easy",
+    "hint": "Round toy you can throw and catch"
   },
   {
-    "word": "chocolate",
-    "difficulty": "hard",
-    "hint": "A sweet brown food made from cocoa beans"
+    "word": "kite",
+    "difficulty": "easy",
+    "hint": "Flies high in the sky with string"
   },
   {
-    "word": "umbrella",
-    "difficulty": "hard",
-    "hint": "You use this to keep dry when it rains"
+    "word": "fish",
+    "difficulty": "easy",
+    "hint": "Swims in water"
   },
   {
-    "word": "calendar",
-    "difficulty": "hard",
-    "hint": "Shows the days, weeks, and months of the year"
+    "word": "bird",
+    "difficulty": "easy",
+    "hint": "Animal with wings that can fly"
   },
   {
-    "word": "butterfly",
-    "difficulty": "medium",
-    "hint": "An insect with colorful wings that can fly"
+    "word": "book",
+    "difficulty": "easy",
+    "hint": "Has pages with stories to read"
   },
   {
-    "word": "strawberry",
-    "difficulty": "hard",
-    "hint": "A sweet red fruit with seeds on the outside"
+    "word": "toy",
+    "difficulty": "easy",
+    "hint": "Something fun to play with"
   },
   {
-    "word": "computer",
-    "difficulty": "medium",
-    "hint": "An electronic device used to process information"
+    "word": "ring",
+    "difficulty": "easy",
+    "hint": "Circular jewelry worn on finger"
   },
   {
-    "word": "knowledge",
-    "difficulty": "hard",
-    "hint": "Information and skills gained through learning"
+    "word": "cup",
+    "difficulty": "easy",
+    "hint": "You drink from it"
   },
   {
-    "word": "vacation",
-    "difficulty": "hard",
-    "hint": "A period spent away from home for enjoyment"
+    "word": "door",
+    "difficulty": "easy",
+    "hint": "You open it to enter a room"
   },
   {
-    "word": "sandwich",
-    "difficulty": "medium",
-    "hint": "Food with fillings between two pieces of bread"
+    "word": "pen",
+    "difficulty": "easy",
+    "hint": "Used for writing with ink"
   },
   {
-    "word": "happiness",
-    "difficulty": "hard",
-    "hint": "The feeling of being happy"
+    "word": "key",
+    "difficulty": "easy",
+    "hint": "Opens a lock"
   },
   {
-    "word": "playground",
-    "difficulty": "hard",
-    "hint": "An outdoor area where children can play"
+    "word": "cake",
+    "difficulty": "easy",
+    "hint": "Sweet treat for birthdays"
   },
   {
-    "word": "television",
-    "difficulty": "hard",
-    "hint": "A device that shows moving pictures and sound"
+    "word": "ice",
+    "difficulty": "easy",
+    "hint": "Frozen water"
   }
 ]
