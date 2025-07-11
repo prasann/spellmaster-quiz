@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home as HouseIconLucide, VolumeUp as SpeakerHighIconLucide, PencilLine as PencilIconLucide, Moon as MoonIconLucide, Sun as SunIconLucide, Award as TrophyIconLucide, RotateCw as ArrowsClockwiseIconLucide } from "lucide-react";
+import { Home as HouseIconLucide, Volume2 as SpeakerHighIconLucide, PencilLine as PencilIconLucide, Moon as MoonIconLucide, Sun as SunIconLucide, Award as TrophyIconLucide, RotateCw as ArrowsClockwiseIconLucide } from "lucide-react";
 
 interface IconProps {
   size?: number;
