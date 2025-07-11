@@ -64,16 +64,19 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   }
 
   const handleSubmit = () => {
-    let isAnswerCorrect = false;
+    // Normalize both strings: trim whitespace, convert to lowercase, and remove non-alphanumeric chars
+    const normalizeString = (str: string) => str.trim().toLowerCase().replace(/\s+/g, '');
     
-    if (mode === 'dictation') {
-      // For dictation mode, direct string comparison
-      isAnswerCorrect = userInput.trim().toLowerCase() === currentWord.toLowerCase();
-    } else {
-      // For partial mode, check if the user input completes the word correctly
-      // Simply compare with the full word - simpler and more accurate
-      isAnswerCorrect = userInput.trim().toLowerCase() === currentWord.toLowerCase();
-    }
+    const normalizedUserInput = normalizeString(userInput);
+    const normalizedCurrentWord = normalizeString(currentWord);
+    
+    // Compare the normalized strings
+    const isAnswerCorrect = normalizedUserInput === normalizedCurrentWord;
+    
+    // Log for debugging (will appear in console)
+    console.log(`User input: "${userInput}" vs Word: "${currentWord}"`);
+    console.log(`Normalized: "${normalizedUserInput}" vs "${normalizedCurrentWord}"`);
+    console.log(`Match: ${isAnswerCorrect}`);
     
     setIsCorrect(isAnswerCorrect);
     setHasSubmitted(true);
