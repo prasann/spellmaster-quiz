@@ -7,8 +7,10 @@ import ModeSelector from './components/ModeSelector'
 import QuizMode from './components/QuizMode'
 import ScoreDisplay from './components/ScoreDisplay'
 import { House, SpeakerHigh, Pencil } from '@phosphor-icons/react'
+import { ThemeProvider } from './components/ThemeProvider'
+import ThemeToggle from './components/ThemeToggle'
 
-function App() {
+function AppContent() {
   const [quizMode, setQuizMode] = useState<'dictation' | 'partial' | null>(null)
   const [score, setScore] = useKV('quiz-score', { correct: 0, total: 0 })
   const [isActive, setIsActive] = useState(false)
@@ -49,11 +51,14 @@ function App() {
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold text-foreground">Spelling Quiz</h1>
           
-          {isActive && (
-            <Button variant="ghost" size="icon" onClick={handleBackToHome}>
-              <House size={24} />
-            </Button>
-          )}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            {isActive && (
+              <Button variant="ghost" size="icon" onClick={handleBackToHome}>
+                <House size={24} />
+              </Button>
+            )}
+          </div>
         </div>
       </header>
       
@@ -109,6 +114,14 @@ function App() {
         </div>
       </div>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
 

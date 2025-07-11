@@ -25,9 +25,9 @@
    - Success criteria: Clear audio pronunciation and accurate scoring
 
 2. **Partial Spelling Mode**
-   - Functionality: Shows a word with some letters pre-filled, requiring completion
+   - Functionality: Shows a word with some letters pre-filled, requiring direct input of missing letters
    - Purpose: Provides scaffolding for learning difficult words
-   - Success criteria: Appropriate difficulty level and helpful letter hints
+   - Success criteria: Appropriate difficulty level and interactive letter input
 
 3. **Scoring System**
    - Functionality: Tracks correct/incorrect answers for the session
@@ -38,6 +38,11 @@
    - Functionality: Words stored in JSON format, randomly selected for quizzes
    - Purpose: Ensures variety and appropriate difficulty
    - Success criteria: Diverse word selection that challenges without frustrating
+
+5. **Theme Switching**
+   - Functionality: Toggle between light and dark mode
+   - Purpose: Accommodates different lighting conditions and preferences
+   - Success criteria: Clear visual distinction between modes with consistent usability
 
 ## Design Direction
 
@@ -55,12 +60,20 @@
 - **Color Psychology**: Bright, energetic colors to maintain children's interest while being visually appealing
 - **Color Accessibility**: All color combinations meet WCAG AA contrast requirements
 - **Foreground/Background Pairings**:
-  - Background (light cream #FFF9F0) / Foreground (dark blue #2C3E50)
-  - Card (white #FFFFFF) / Card-foreground (dark blue #2C3E50)
-  - Primary (blue #3498db) / Primary-foreground (white #FFFFFF)
-  - Secondary (coral #FF6B6B) / Secondary-foreground (white #FFFFFF)
-  - Accent (green #06D6A0) / Accent-foreground (white #FFFFFF)
-  - Muted (light gray #F8F9FA) / Muted-foreground (medium gray #6C757D)
+  - Light Mode:
+    - Background (light cream #FFF9F0) / Foreground (dark blue #2C3E50)
+    - Card (white #FFFFFF) / Card-foreground (dark blue #2C3E50)
+    - Primary (blue #3498db) / Primary-foreground (white #FFFFFF)
+    - Secondary (coral #FF6B6B) / Secondary-foreground (white #FFFFFF)
+    - Accent (green #06D6A0) / Accent-foreground (white #FFFFFF)
+    - Muted (light gray #F8F9FA) / Muted-foreground (medium gray #6C757D)
+  - Dark Mode:
+    - Background (dark blue #1A202C) / Foreground (off-white #F7FAFC)
+    - Card (slightly lighter dark blue #2D3748) / Card-foreground (off-white #F7FAFC)
+    - Primary (blue #4299E1) / Primary-foreground (very dark blue)
+    - Secondary (coral #F56565) / Secondary-foreground (very dark blue)
+    - Accent (green #48BB78) / Accent-foreground (very dark blue)
+    - Muted (dark gray #4A5568) / Muted-foreground (light gray #A0AEC0)
 
 ### Typography System
 - **Font Pairing Strategy**: Playful, rounded heading font paired with highly legible body font
@@ -97,9 +110,11 @@
 - **Style Guide Elements**: Colors, typography, spacing, and component styles
 - **Visual Rhythm**: Consistent padding and alignment throughout
 - **Brand Alignment**: Educational but fun aesthetic
+- **Theme Support**: Light and dark mode options for different usage environments and preferences
 
 ### Accessibility & Readability
-- **Contrast Goal**: WCAG AA compliance for all text elements
+- **Contrast Goal**: WCAG AA compliance for all text elements in both light and dark themes
+- **Theme Adaptation**: Ensure all components maintain visibility and functionality across themes
 
 ## Edge Cases & Problem Scenarios
 - **Potential Obstacles**: Audio playback issues, spelling variations

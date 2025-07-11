@@ -60,14 +60,37 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   }
 
   const handleSubmit = () => {
-    const isAnswerCorrect = userInput.toLowerCase() === currentWord.toLowerCase()
-    setIsCorrect(isAnswerCorrect)
-    setHasSubmitted(true)
+    let isAnswerCorrect = false;
+    
+    if (mode === 'dictation') {
+      isAnswerCorrect = userInput.toLowerCase() === currentWord.toLowerCase();
+    } else {
+      // For partial mode, only check the letters that were blank
+      const missingLetters = currentWord.split('').filter((_, i) => partialWord[i] === '_');
+      const userLetters = userInput.split('');
+      
+      let correctCount = 0;
+      let userIndex = 0;
+      
+      for (let i = 0; i < currentWord.length; i++) {
+        if (partialWord[i] === '_') {
+          if (userLetters[userIndex]?.toLowerCase() === currentWord[i].toLowerCase()) {
+            correctCount++;
+          }
+          userIndex++;
+        }
+      }
+      
+      isAnswerCorrect = correctCount === missingLetters.length;
+    }
+    
+    setIsCorrect(isAnswerCorrect);
+    setHasSubmitted(true);
     
     if (isAnswerCorrect) {
-      onCorrectAnswer()
+      onCorrectAnswer();
     } else {
-      onWrongAnswer()
+      onWrongAnswer();
     }
   }
 
@@ -100,7 +123,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
       
       {mode === 'partial' && (
         <div className="flex items-center justify-center w-full">
-          <div className="flex justify-center space-x-2 text-3xl font-bold">
+          <div className="flex flex-wrap justify-center gap-2 text-3xl font-bold max-w-xs">
             {partialWord.split('').map((char, index) => (
               <div 
                 key={index} 
@@ -113,17 +136,51 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
         </div>
       )}
       
-      <div className="w-full max-w-xs">
-        <Input
-          id="quiz-input"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          placeholder={mode === 'dictation' ? "Type what you hear..." : "Complete the word..."}
-          className="text-center text-lg"
-          disabled={hasSubmitted}
-          autoComplete="off"
-        />
-      </div>
+      {mode === 'dictation' ? (
+        <div className="w-full max-w-xs">
+          <Input
+            id="quiz-input"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="Type what you hear..."
+            className="text-center text-lg"
+            disabled={hasSubmitted}
+            autoComplete="off"
+          />
+        </div>
+      ) : (
+        <div className="flex items-center justify-center w-full">
+          <div className="flex flex-wrap justify-center gap-2 text-xl font-bold max-w-xs">
+            {currentWord.split('').map((char, index) => {
+              const isHidden = partialWord[index] === '_';
+              return (
+                <div 
+                  key={index} 
+                  className={`w-8 h-12 flex items-center justify-center border-b-2 border-primary`}
+                >
+                  {isHidden ? (
+                    <input
+                      type="text"
+                      maxLength={1}
+                      value={userInput[index] || ''}
+                      onChange={(e) => {
+                        const newInput = userInput.split('');
+                        newInput[index] = e.target.value;
+                        setUserInput(newInput.join(''));
+                      }}
+                      className="w-6 h-8 text-center bg-transparent text-foreground focus:outline-none"
+                      disabled={hasSubmitted}
+                      autoComplete="off"
+                    />
+                  ) : (
+                    <span>{char}</span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
       
       <div className="flex flex-col items-center space-y-4 w-full">
         {!hasSubmitted ? (

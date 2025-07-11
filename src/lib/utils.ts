@@ -41,7 +41,19 @@ export function getPartialWord(word: string, hidePercentage = 0.5) {
 export function isLetterCorrect(userInput: string, word: string, position: number) {
   if (!userInput || position >= userInput.length) return null
   
-  return userInput[position].toLowerCase() === word[position].toLowerCase()
+  return userInput[position]?.toLowerCase() === word[position]?.toLowerCase()
+}
+
+// Check if a partial word is correctly filled
+export function isPartialWordCorrect(userInput: string, word: string, partialWord: string) {
+  if (!userInput || userInput.length === 0) return false
+  
+  // Create the expected word with user input
+  const expectedWord = word.split('').map((char, i) => {
+    return partialWord[i] === '_' ? userInput[i] || '' : char
+  }).join('')
+  
+  return expectedWord.toLowerCase() === word.toLowerCase()
 }
 
 // Convert text to speech
