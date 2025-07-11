@@ -3,7 +3,7 @@ import { useKV } from '@github/spark/hooks'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Input } from './ui/input'
-import { SpeakerHigh, Pencil } from '@phosphor-icons/react'
+import { SpeakerHighIcon } from './Icons'
 import { getRandomWord, getPartialWord, speakWord } from '../lib/utils'
 
 interface QuizModeProps {
@@ -107,7 +107,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
             onClick={handleSpeak}
             className="rounded-full"
           >
-            <SpeakerHigh size={24} />
+            <SpeakerHighIcon size={24} />
           </Button>
         )}
       </div>

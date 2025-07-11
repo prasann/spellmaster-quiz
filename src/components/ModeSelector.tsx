@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
-import { SpeakerHigh, Pencil } from '@phosphor-icons/react'
+import { SpeakerHighIcon, PencilIcon } from './Icons'
 
 interface ModeSelectorProps {
   onSelectMode: (mode: 'dictation' | 'partial') => void
@@ -18,7 +18,7 @@ export function ModeSelector({ onSelectMode }: ModeSelectorProps) {
       >
         <div className="flex flex-col items-center text-center space-y-3">
           <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-            <SpeakerHigh size={32} className="text-primary" weight="fill" />
+            <SpeakerHighIcon size={32} className="text-primary" />
           </div>
           
           <h3 className="text-xl font-bold">Listen & Spell</h3>
@@ -39,7 +39,7 @@ export function ModeSelector({ onSelectMode }: ModeSelectorProps) {
       >
         <div className="flex flex-col items-center text-center space-y-3">
           <div className="h-16 w-16 rounded-full bg-secondary/10 flex items-center justify-center">
-            <Pencil size={32} className="text-secondary" weight="fill" />
+            <PencilIcon size={32} className="text-secondary" />
           </div>
           
           <h3 className="text-xl font-bold">Complete the Word</h3>

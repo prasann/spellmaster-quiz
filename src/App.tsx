@@ -6,7 +6,7 @@ import PhoneFrame from './components/PhoneFrame'
 import ModeSelector from './components/ModeSelector'
 import QuizMode from './components/QuizMode'
 import ScoreDisplay from './components/ScoreDisplay'
-import { House, SpeakerHigh, Pencil } from '@phosphor-icons/react'
+import { HouseIcon } from './components/Icons'
 import { ThemeProvider } from './components/ThemeProvider'
 import ThemeToggle from './components/ThemeToggle'
 
@@ -55,7 +55,7 @@ function AppContent() {
             <ThemeToggle />
             {isActive && (
               <Button variant="ghost" size="icon" onClick={handleBackToHome}>
-                <House size={24} />
+                <HouseIcon size={24} />
               </Button>
             )}
           </div>

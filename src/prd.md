@@ -100,7 +100,7 @@
 - **Component Usage**: Cards for quiz content, buttons for actions, modal for results
 - **Component Customization**: Rounded corners, soft shadows for child-friendly appearance
 - **Component States**: Clear visual feedback for interactive elements
-- **Icon Selection**: Simple, recognizable icons (speaker for audio, check/x for feedback)
+- **Icon Selection**: Custom SVG icons for consistent cross-platform rendering
 - **Component Hierarchy**: Quiz content > input area > navigation buttons
 - **Spacing System**: Consistent padding using Tailwind's spacing scale (4, 6, 8)
 - **Mobile Adaptation**: Full-screen experience on mobile, contained frame on larger devices
