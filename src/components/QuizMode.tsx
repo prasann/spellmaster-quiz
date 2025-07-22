@@ -3,7 +3,6 @@ import { useKV } from '@github/spark/hooks'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Input } from './ui/input'
-import { LightbulbIcon } from './Icons'
 import { getRandomWord, getPartialWord } from '../lib/utils'
 import { motion } from 'framer-motion'
 import Confetti from './Confetti'
@@ -23,7 +22,6 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [wordHistory, setWordHistory] = useKV('quiz-word-history', [] as string[])
   const [showConfetti, setShowConfetti] = useState(false)
-  const [showHint, setShowHint] = useState(false)
 
   // Initialize or get next word
   useEffect(() => {
@@ -49,7 +47,6 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
     setIsCorrect(null)
     setHasSubmitted(false)
     setShowConfetti(false)
-    setShowHint(false)
     
     // Add to history
     setWordHistory(current => {
@@ -93,12 +90,8 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
     onNextWord()
   }
 
-  const toggleHint = () => {
-    setShowHint(current => !current)
-  }
-
   return (
-    <Card className="p-6 flex flex-col items-center space-y-5">
+    <Card className="p-4 flex flex-col items-center space-y-4">
       {/* Confetti animation when correct */}
       <Confetti show={showConfetti} />
       
@@ -108,27 +101,15 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
         </h2>
       </div>
       
-      {/* Hint section */}
-      <div className="w-full flex flex-col items-center">
-        <Button 
-          variant="ghost" 
-          size="sm"
-          onClick={toggleHint}
-          className="flex items-center gap-1 text-muted-foreground hover:text-foreground"
+      {/* Hint section - always visible */}
+      <div className="w-full flex flex-col items-center mb-2">
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center italic text-sm text-primary/80 px-4 bg-primary/10 rounded-full py-2"
         >
-          <LightbulbIcon size={18} />
-          {showHint ? 'Hide Hint' : 'Show Hint'}
-        </Button>
-        
-        {showHint && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-2 text-center italic text-sm text-muted-foreground px-4"
-          >
-            Hint: {currentHint}
-          </motion.div>
-        )}
+          💡 {currentHint}
+        </motion.div>
       </div>
       
       {/* Word puzzle display */}
@@ -161,19 +142,6 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
       </div>
       
       <div className="w-full max-w-xs space-y-3">
-        <div className="text-center text-sm font-medium">
-          <motion.div 
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center bg-primary/15 text-primary px-4 py-1.5 rounded-full"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5">
-              <path d="M12 20h9"></path>
-              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-            </svg>
-            Type the complete word
-          </motion.div>
-        </div>
         
         <motion.div 
           animate={{ 

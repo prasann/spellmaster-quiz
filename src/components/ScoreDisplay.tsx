@@ -40,25 +40,25 @@ export function ScoreDisplay({ correct, total, onReset }: ScoreDisplayProps) {
   }
   
   return (
-    <Card className="p-4 shadow-sm">
+    <Card className="p-3 shadow-sm">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-lg font-semibold flex items-center gap-2">
-          <TrophyIcon className="text-secondary" />
+        <h3 className="text-base font-semibold flex items-center gap-1.5">
+          <TrophyIcon className="text-secondary" size={16} />
           Score
         </h3>
         
         {onReset && (
           <button 
             onClick={onReset}
-            className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-sm"
+            className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-xs"
           >
-            <ArrowsClockwiseIcon size={16} />
+            <ArrowsClockwiseIcon size={14} />
             Reset
           </button>
         )}
       </div>
       
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-1.5">
         <div className="flex justify-between text-sm">
           <span className="font-medium text-foreground">
             <motion.span ref={scope}>{correct}</motion.span> correct
@@ -66,10 +66,10 @@ export function ScoreDisplay({ correct, total, onReset }: ScoreDisplayProps) {
           <span className="text-muted-foreground">{total} total</span>
         </div>
         
-        <Progress value={percentage} className="h-2" />
+        <Progress value={percentage} className="h-1.5" />
         
         <motion.div 
-          className="text-center text-sm font-medium mt-1"
+          className="text-center text-xs font-medium"
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}

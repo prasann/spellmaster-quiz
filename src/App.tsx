@@ -14,6 +14,8 @@ function AppContent() {
   const [isActive, setIsActive] = useState(false)
 
   const handleStartQuiz = () => {
+    // Reset score when starting a new quiz
+    setScore({ correct: 0, total: 0 })
     setIsActive(true)
   }
 
@@ -59,7 +61,7 @@ function AppContent() {
       </header>
       
       {/* Main content */}
-      <main className="flex-1 p-6 flex flex-col gap-6">
+      <main className="flex-1 p-4 flex flex-col gap-4">
         {!isActive ? (
           <>
             <div className="text-center mb-6">
