@@ -22,11 +22,47 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [wordHistory, setWordHistory] = useKV('quiz-word-history', [] as string[])
   const [showConfetti, setShowConfetti] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [isAutoAdvancing, setIsAutoAdvancing] = useState(false)
 
   // Initialize or get next word
   useEffect(() => {
     getNextWord()
   }, []) // Only run once on mount
+
+  // Auto-advance timer effect
+  useEffect(() => {
+    let timer: NodeJS.Timeout
+    let interval: NodeJS.Timeout
+    
+    if (isCorrect && hasSubmitted) {
+      setIsAutoAdvancing(true)
+      setProgress(0)
+      
+      // Progress animation
+      interval = setInterval(() => {
+        setProgress(prev => {
+          const newProgress = prev + (100 / 20) // 20 intervals over 2 seconds
+          if (newProgress >= 100) {
+            clearInterval(interval)
+            return 100
+          }
+          return newProgress
+        })
+      }, 100) // Update every 100ms
+      
+      // Auto-advance after 2 seconds
+      timer = setTimeout(() => {
+        getNextWord()
+        onNextWord()
+      }, 2000)
+    }
+    
+    return () => {
+      if (timer) clearTimeout(timer)
+      if (interval) clearInterval(interval)
+    }
+  }, [isCorrect, hasSubmitted, onNextWord])
 
   const getNextWord = () => {
     let attempts = 0
@@ -47,6 +83,8 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
     setIsCorrect(null)
     setHasSubmitted(false)
     setShowConfetti(false)
+    setProgress(0)
+    setIsAutoAdvancing(false)
     
     // Add to history
     setWordHistory(current => {
@@ -221,10 +259,23 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
             <motion.div className="w-full max-w-xs" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button 
                 onClick={handleNext}
-                className="w-full"
+                className="w-full relative overflow-hidden"
                 variant={isCorrect ? "outline" : "secondary"}
+                disabled={isAutoAdvancing}
               >
-                Next Word
+                {isCorrect && isAutoAdvancing ? (
+                  <div className="flex items-center gap-2 relative z-10">
+                    <span>Next Word</span>
+                    <span className="text-sm opacity-75">({Math.ceil((100 - progress) / 50)}s)</span>
+                    {/* Progress bar background */}
+                    <div 
+                      className="absolute inset-0 bg-primary/20 transition-all duration-100 ease-linear"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                ) : (
+                  "Next Word"
+                )}
               </Button>
             </motion.div>
           </>
