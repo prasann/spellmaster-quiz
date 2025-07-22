@@ -1,93 +1,13 @@
 [
   {
-    "word": "cat",
+    "word": "bush",
     "difficulty": "easy",
-    "hint": "A furry pet that purrs"
+    "hint": "A small plant with lots of leaves"
   },
   {
-    "word": "dog",
+    "word": "cage",
     "difficulty": "easy",
-    "hint": "A pet that barks"
-  },
-  {
-    "word": "bat",
-    "difficulty": "easy",
-    "hint": "An animal that flies at night"
-  },
-  {
-    "word": "hat",
-    "difficulty": "easy",
-    "hint": "You wear it on your head"
-  },
-  {
-    "word": "sun",
-    "difficulty": "easy",
-    "hint": "It shines in the sky during day"
-  },
-  {
-    "word": "moon",
-    "difficulty": "easy",
-    "hint": "You see it in the night sky"
-  },
-  {
-    "word": "star",
-    "difficulty": "easy",
-    "hint": "Twinkles in the night sky"
-  },
-  {
-    "word": "ball",
-    "difficulty": "easy",
-    "hint": "Round toy you can throw and catch"
-  },
-  {
-    "word": "kite",
-    "difficulty": "easy",
-    "hint": "Flies high in the sky with string"
-  },
-  {
-    "word": "fish",
-    "difficulty": "easy",
-    "hint": "Swims in water"
-  },
-  {
-    "word": "bird",
-    "difficulty": "easy",
-    "hint": "Animal with wings that can fly"
-  },
-  {
-    "word": "book",
-    "difficulty": "easy",
-    "hint": "Has pages with stories to read"
-  },
-  {
-    "word": "toy",
-    "difficulty": "easy",
-    "hint": "Something fun to play with"
-  },
-  {
-    "word": "ring",
-    "difficulty": "easy",
-    "hint": "Circular jewelry worn on finger"
-  },
-  {
-    "word": "cup",
-    "difficulty": "easy",
-    "hint": "You drink from it"
-  },
-  {
-    "word": "door",
-    "difficulty": "easy",
-    "hint": "You open it to enter a room"
-  },
-  {
-    "word": "pen",
-    "difficulty": "easy",
-    "hint": "Used for writing with ink"
-  },
-  {
-    "word": "key",
-    "difficulty": "easy",
-    "hint": "Opens a lock"
+    "hint": "Where birds or animals are kept"
   },
   {
     "word": "cake",
@@ -95,8 +15,148 @@
     "hint": "Sweet treat for birthdays"
   },
   {
-    "word": "ice",
+    "word": "calf",
     "difficulty": "easy",
-    "hint": "Frozen water"
+    "hint": "A baby cow"
+  },
+  {
+    "word": "call",
+    "difficulty": "easy",
+    "hint": "To shout or speak loudly"
+  },
+  {
+    "word": "calm",
+    "difficulty": "easy",
+    "hint": "Peaceful and quiet"
+  },
+  {
+    "word": "camp",
+    "difficulty": "easy",
+    "hint": "Sleep outdoors in a tent"
+  },
+  {
+    "word": "cane",
+    "difficulty": "easy",
+    "hint": "Stick to help you walk"
+  },
+  {
+    "word": "card",
+    "difficulty": "easy",
+    "hint": "Paper rectangle for games"
+  },
+  {
+    "word": "care",
+    "difficulty": "easy",
+    "hint": "To look after someone"
+  },
+  {
+    "word": "cash",
+    "difficulty": "easy",
+    "hint": "Money you can hold"
+  },
+  {
+    "word": "cave",
+    "difficulty": "easy",
+    "hint": "A hole in a mountain or rock"
+  },
+  {
+    "word": "chair",
+    "difficulty": "easy",
+    "hint": "You sit on this"
+  },
+  {
+    "word": "chalk",
+    "difficulty": "easy",
+    "hint": "White stick for writing on board"
+  },
+  {
+    "word": "chase",
+    "difficulty": "easy",
+    "hint": "To run after someone"
+  },
+  {
+    "word": "chat",
+    "difficulty": "easy",
+    "hint": "To talk with friends"
+  },
+  {
+    "word": "check",
+    "difficulty": "easy",
+    "hint": "To look at something carefully"
+  },
+  {
+    "word": "cheer",
+    "difficulty": "easy",
+    "hint": "To shout happily for your team"
+  },
+  {
+    "word": "chew",
+    "difficulty": "easy",
+    "hint": "What you do with food in mouth"
+  },
+  {
+    "word": "child",
+    "difficulty": "easy",
+    "hint": "A young person"
+  },
+  {
+    "word": "chill",
+    "difficulty": "easy",
+    "hint": "To make something cold"
+  },
+  {
+    "word": "chin",
+    "difficulty": "easy",
+    "hint": "Part of your face below mouth"
+  },
+  {
+    "word": "chips",
+    "difficulty": "easy",
+    "hint": "Crispy snack food"
+  },
+  {
+    "word": "city",
+    "difficulty": "easy",
+    "hint": "A big place with many buildings"
+  },
+  {
+    "word": "clap",
+    "difficulty": "easy",
+    "hint": "Hit hands together to make noise"
+  },
+  {
+    "word": "clash",
+    "difficulty": "easy",
+    "hint": "When things bump into each other"
+  },
+  {
+    "word": "class",
+    "difficulty": "easy",
+    "hint": "Group of students learning"
+  },
+  {
+    "word": "claw",
+    "difficulty": "easy",
+    "hint": "Sharp nail on animal's foot"
+  },
+  {
+    "word": "clay",
+    "difficulty": "easy",
+    "hint": "Soft earth for making pots"
+  },
+  {
+    "word": "clean",
+    "difficulty": "easy",
+    "hint": "Not dirty"
+  },
+  {
+    "word": "clear",
+    "difficulty": "easy",
+    "hint": "See through like glass"
+  },
+  {
+    "word": "clock",
+    "difficulty": "easy",
+    "hint": "Shows what time it is"
   }
 ]
