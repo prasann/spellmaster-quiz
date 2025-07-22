@@ -86,8 +86,9 @@ export function Confetti({ show, duration = 3000 }: ConfettiProps) {
       width={windowSize.width}
       height={windowSize.height}
       recycle={false}
-      numberOfPieces={200}
-      gravity={0.15}
+      numberOfPieces={500}
+      gravity={0.12}
+      colors={['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8E8', '#F7DC6F']}
       style={{ position: 'fixed', top: 0, left: 0, zIndex: 1000, pointerEvents: 'none' }}
     />
   );

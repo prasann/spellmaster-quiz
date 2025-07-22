@@ -144,7 +144,7 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center italic text-sm text-primary/80 px-4 bg-primary/10 rounded-full py-2"
+          className="text-center italic text-sm text-primary-foreground px-4 bg-primary rounded-full py-2"
         >
           💡 {currentHint}
         </motion.div>
