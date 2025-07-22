@@ -39,10 +39,10 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
       setIsAutoAdvancing(true)
       setProgress(0)
       
-      // Progress animation
+      // Progress animation - 30 intervals over 3 seconds
       interval = setInterval(() => {
         setProgress(prev => {
-          const newProgress = prev + (100 / 20) // 20 intervals over 2 seconds
+          const newProgress = prev + (100 / 30) // 30 intervals over 3 seconds
           if (newProgress >= 100) {
             clearInterval(interval)
             return 100
@@ -51,11 +51,11 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
         })
       }, 100) // Update every 100ms
       
-      // Auto-advance after 2 seconds
+      // Auto-advance after 3 seconds (wait for confetti to complete)
       timer = setTimeout(() => {
         getNextWord()
         onNextWord()
-      }, 2000)
+      }, 3000)
     }
     
     return () => {
@@ -266,7 +266,7 @@ export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizMod
                 {isCorrect && isAutoAdvancing ? (
                   <div className="flex items-center gap-2 relative z-10">
                     <span>Next Word</span>
-                    <span className="text-sm opacity-75">({Math.ceil((100 - progress) / 50)}s)</span>
+                    <span className="text-sm opacity-75">({Math.ceil((100 - progress) / 33)}s)</span>
                     {/* Progress bar background */}
                     <div 
                       className="absolute inset-0 bg-primary/20 transition-all duration-100 ease-linear"

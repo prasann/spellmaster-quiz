@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactConfetti from 'react-confetti';
-import { motion } from 'framer-motion';
 
 interface ConfettiProps {
   show: boolean;
@@ -28,10 +27,50 @@ export function Confetti({ show, duration = 3000 }: ConfettiProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Handle the confetti timing
+  // Handle the confetti timing and play celebration sound
   useEffect(() => {
     if (show) {
       setIsActive(true);
+      
+      // Play celebration sound
+      const playSuccessSound = () => {
+        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        
+        // Create a cheerful melody
+        const notes = [
+          { freq: 523.25, time: 0, duration: 0.15 }, // C5
+          { freq: 659.25, time: 0.1, duration: 0.15 }, // E5
+          { freq: 783.99, time: 0.2, duration: 0.15 }, // G5
+          { freq: 1046.5, time: 0.3, duration: 0.3 }   // C6
+        ];
+        
+        notes.forEach(note => {
+          setTimeout(() => {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(note.freq, audioContext.currentTime);
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + note.duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + note.duration);
+          }, note.time * 1000);
+        });
+      };
+      
+      try {
+        playSuccessSound();
+      } catch (error) {
+        console.log('Audio not available');
+      }
+      
       const timer = setTimeout(() => {
         setIsActive(false);
       }, duration);
@@ -40,47 +79,17 @@ export function Confetti({ show, duration = 3000 }: ConfettiProps) {
     return () => {};
   }, [show, duration]);
 
-  // Star animation variant
-  const starVariants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: { 
-      scale: [0, 1.2, 1],
-      opacity: [0, 1, 1],
-      transition: { duration: 0.5 }
-    },
-    exit: { 
-      scale: [1, 1.2, 0],
-      opacity: [1, 1, 0],
-      transition: { duration: 0.3 }
-    }
-  };
-
   if (!isActive) return null;
   
   return (
-    <>
-      {/* Confetti overlay */}
-      <ReactConfetti
-        width={windowSize.width}
-        height={windowSize.height}
-        recycle={false}
-        numberOfPieces={200}
-        gravity={0.15}
-      />
-      
-      {/* Star animation */}
-      <div className="fixed inset-0 pointer-events-none flex items-center justify-center">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={starVariants}
-          className="text-yellow-400 text-9xl"
-        >
-          ⭐
-        </motion.div>
-      </div>
-    </>
+    <ReactConfetti
+      width={windowSize.width}
+      height={windowSize.height}
+      recycle={false}
+      numberOfPieces={200}
+      gravity={0.15}
+      style={{ position: 'fixed', top: 0, left: 0, zIndex: 1000, pointerEvents: 'none' }}
+    />
   );
 }
 
