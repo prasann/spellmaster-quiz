@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useKV } from '@github/spark/hooks'
 import { Button } from './components/ui/button'
 import { Card } from './components/ui/card'
 import PhoneFrame from './components/PhoneFrame'
-import ModeSelector from './components/ModeSelector'
 import QuizMode from './components/QuizMode'
 import ScoreDisplay from './components/ScoreDisplay'
 import { HouseIcon } from './components/Icons'
 import { ThemeProvider } from './components/ThemeProvider'
 import ThemeToggle from './components/ThemeToggle'
-import { initSpeechSynthesis } from './lib/utils'
 
 function AppContent() {
-  const [quizMode, setQuizMode] = useState<'dictation' | 'partial' | null>(null)
   const [score, setScore] = useKV('quiz-score', { correct: 0, total: 0 })
   const [isActive, setIsActive] = useState(false)
-  
-  // Initialize speech synthesis when app loads
-  useEffect(() => {
-    initSpeechSynthesis()
-  }, [])
 
-  const handleSelectMode = (mode: 'dictation' | 'partial') => {
-    setQuizMode(mode)
+  const handleStartQuiz = () => {
     setIsActive(true)
   }
 
@@ -45,7 +36,6 @@ function AppContent() {
   }
 
   const handleBackToHome = () => {
-    setQuizMode(null)
     setIsActive(false)
   }
 
@@ -72,16 +62,35 @@ function AppContent() {
       <main className="flex-1 p-6 flex flex-col gap-6">
         {!isActive ? (
           <>
-            <div className="text-center mb-4">
+            <div className="text-center mb-6">
               <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
                 Spelling Quiz
               </h1>
               <p className="text-muted-foreground mt-2">
-                Practice your spelling skills with fun challenges!
+                Complete the word by filling in missing letters!
               </p>
             </div>
             
-            <ModeSelector onSelectMode={handleSelectMode} />
+            <Card className="p-8 max-w-md mx-auto">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                    <path d="M12 20h9"></path>
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                  </svg>
+                </div>
+                
+                <h3 className="text-2xl font-bold">Complete the Word</h3>
+                
+                <p className="text-muted-foreground">
+                  Fill in the missing letters to complete the word. Use the hint if you need help!
+                </p>
+                
+                <Button onClick={handleStartQuiz} size="lg" className="w-full mt-6">
+                  Start Quiz
+                </Button>
+              </div>
+            </Card>
           </>
         ) : (
           <>
@@ -92,7 +101,6 @@ function AppContent() {
             />
             
             <QuizMode 
-              mode={quizMode!} 
               onCorrectAnswer={handleCorrectAnswer}
               onWrongAnswer={handleWrongAnswer}
               onNextWord={() => {}}

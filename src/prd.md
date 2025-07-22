@@ -10,43 +10,38 @@
 - **Primary User Activity**: Acting (responding to quiz prompts)
 
 ## Thought Process for Feature Selection
-- **Core Problem Analysis**: Children need engaging ways to practice and improve their spelling skills.
+- **Core Problem Analysis**: Children need engaging ways to practice and improve their spelling skills through visual word completion.
 - **User Context**: Parents will have children use the app during study time or as an educational activity on mobile devices.
-- **Critical Path**: Select quiz mode → Receive word prompt → Submit spelling attempt → Get feedback → See final score
+- **Critical Path**: Start quiz → See partial word → Submit spelling attempt → Get feedback → See final score
 - **Key Moments**: 
-  1. Word pronunciation/presentation
+  1. Word presentation with missing letters
   2. Submission of spelling attempt
   3. Score reveal and feedback
 
 ## Essential Features
-1. **Voice Dictation Mode**
-   - Functionality: App speaks a word that the child must spell correctly
-   - Purpose: Develops listening and spelling connection
-   - Success criteria: Clear audio pronunciation and accurate scoring
-
-2. **Partial Spelling Mode**
+1. **Complete the Word Mode**
    - Functionality: Shows a word with some letters missing to help with recognition, requiring the child to type the full word
    - Purpose: Provides scaffolding for learning difficult words while reinforcing complete spelling
    - Success criteria: Clear visual presentation with intuitive connections between the partial word display and input field, with accurate scoring
    - Enhancements: Visual connector elements and clearer input labeling to guide users to the text entry field
 
-3. **Scoring System**
+2. **Scoring System**
    - Functionality: Tracks correct/incorrect answers for the session
    - Purpose: Provides immediate feedback and sense of accomplishment
    - Success criteria: Clear, encouraging feedback that motivates continued play
 
-4. **Vocabulary Management**
+3. **Vocabulary Management**
    - Functionality: Words stored in JSON format with difficulty levels and hints, randomly selected for quizzes
    - Purpose: Ensures variety and appropriate difficulty with contextual support
    - Success criteria: Diverse word selection that challenges without frustrating
    - Updates: Vocabulary focused on shorter words (less than 5 letters) for younger children or beginners
 
-5. **Hint System**
+4. **Hint System**
    - Functionality: Optional hints that provide context or meaning for each word
    - Purpose: Helps children connect spelling with meaning and offers support without giving away the answer
    - Success criteria: Relevant hints that aid learning without making the quiz too easy
 
-6. **Theme Switching**
+5. **Theme Switching**
    - Functionality: Toggle between light and dark mode with dark mode as default
    - Purpose: Accommodates different lighting conditions and preferences
    - Success criteria: Clear visual distinction between modes with consistent usability

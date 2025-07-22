@@ -1,7 +1,6 @@
 import React from 'react';
 import { 
   Home as HouseIconLucide, 
-  Volume2 as SpeakerHighIconLucide, 
   PencilLine as PencilIconLucide, 
   Moon as MoonIconLucide, 
   Sun as SunIconLucide, 
@@ -18,10 +17,6 @@ interface IconProps {
 
 export function HouseIcon({ size = 24, className = "" }: IconProps) {
   return <HouseIconLucide size={size} className={className} />;
-}
-
-export function SpeakerHighIcon({ size = 24, className = "" }: IconProps) {
-  return <SpeakerHighIconLucide size={size} className={className} />;
 }
 
 export function PencilIcon({ size = 24, className = "" }: IconProps) {

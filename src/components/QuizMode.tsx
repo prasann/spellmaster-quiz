@@ -3,19 +3,18 @@ import { useKV } from '@github/spark/hooks'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Input } from './ui/input'
-import { SpeakerHighIcon, LightbulbIcon } from './Icons'
-import { getRandomWord, getPartialWord, speakWord, initSpeechSynthesis } from '../lib/utils'
+import { LightbulbIcon } from './Icons'
+import { getRandomWord, getPartialWord } from '../lib/utils'
 import { motion } from 'framer-motion'
 import Confetti from './Confetti'
 
 interface QuizModeProps {
-  mode: 'dictation' | 'partial'
   onCorrectAnswer: () => void
   onWrongAnswer: () => void
   onNextWord: () => void
 }
 
-export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: QuizModeProps) {
+export function QuizMode({ onCorrectAnswer, onWrongAnswer, onNextWord }: QuizModeProps) {
   const [currentWord, setCurrentWord] = useState('')
   const [currentHint, setCurrentHint] = useState('')
   const [partialWord, setPartialWord] = useState('')
@@ -26,31 +25,12 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
   const [showConfetti, setShowConfetti] = useState(false)
   const [showHint, setShowHint] = useState(false)
 
-  // Initialize speech synthesis
-  useEffect(() => {
-    // Initialize speech synthesis when component mounts
-    initSpeechSynthesis()
-  }, [])
-
   // Initialize or get next word
   useEffect(() => {
-    const cleanup = getNextWord()
-    
-    return () => {
-      if (cleanup) cleanup()
-      // Always make sure speech is cancelled when component unmounts
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel()
-      }
-    }
-  }, [mode]) // Reset word when mode changes
+    getNextWord()
+  }, []) // Only run once on mount
 
   const getNextWord = () => {
-    // First, ensure any previous speech is completely cancelled
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel()
-    }
-    
     let attempts = 0
     let wordItem = getRandomWord()
     let newWord = wordItem.word
@@ -64,7 +44,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
     
     setCurrentWord(newWord)
     setCurrentHint(wordItem.hint)
-    setPartialWord(mode === 'partial' ? getPartialWord(newWord, 0.5) : '')
+    setPartialWord(getPartialWord(newWord, 0.5))
     setUserInput('')
     setIsCorrect(null)
     setHasSubmitted(false)
@@ -80,17 +60,6 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
       }
       return updatedHistory
     })
-    
-    // If dictation mode, speak the word after a longer delay
-    if (mode === 'dictation') {
-      // Add a longer delay before speaking to ensure previous speech is fully cleared
-      const speakTimeout = setTimeout(() => {
-        console.log(`Speaking word: "${newWord}"`)
-        speakWord(newWord)
-      }, 800) // Increased delay to 800ms
-      
-      return () => clearTimeout(speakTimeout)
-    }
   }
 
   const handleSubmit = () => {
@@ -124,19 +93,6 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
     onNextWord()
   }
 
-  const handleSpeak = () => {
-    // First ensure any ongoing speech is fully canceled
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel()
-    }
-    
-    // Add a small delay before speaking to ensure clean start
-    setTimeout(() => {
-      console.log(`Speaking word: "${currentWord}"`)
-      speakWord(currentWord)
-    }, 100)
-  }
-
   const toggleHint = () => {
     setShowHint(current => !current)
   }
@@ -148,18 +104,8 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
       
       <div className="flex items-center justify-center space-x-2 mb-1">
         <h2 className="text-2xl font-bold text-foreground">
-          {mode === 'dictation' ? 'Listen & Spell' : 'Complete the Word'}
+          Complete the Word
         </h2>
-        {mode === 'dictation' && (
-          <Button 
-            variant="outline" 
-            size="icon" 
-            onClick={handleSpeak}
-            className="rounded-full"
-          >
-            <SpeakerHighIcon size={24} />
-          </Button>
-        )}
       </div>
       
       {/* Hint section */}
@@ -185,35 +131,34 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
         )}
       </div>
       
-      {mode === 'partial' && (
-        <div className="flex flex-col items-center justify-center w-full">
-          <div className="bg-muted p-4 rounded-lg shadow-inner">
-            <div className="flex flex-wrap justify-center gap-2 text-3xl font-bold max-w-xs">
-              {partialWord.split('').map((char, index) => (
-                <motion.div 
-                  key={index} 
-                  initial={{ y: -10, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.05, duration: 0.3 }}
-                  className={`w-8 h-12 flex items-center justify-center ${char === '_' ? 'bg-background/50 rounded-md shadow-sm' : ''}`}
-                >
-                  {char === '_' ? '-' : char}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Visual connector */}
-          <div className="h-8 w-6 flex justify-center">
-            <div className="w-0.5 h-full bg-primary/30"></div>
-          </div>
-          <div className="flex justify-center items-center w-8 h-8 rounded-full bg-primary/15 mb-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+      {/* Word puzzle display */}
+      <div className="flex flex-col items-center justify-center w-full">
+        <div className="bg-muted p-4 rounded-lg shadow-inner">
+          <div className="flex flex-wrap justify-center gap-2 text-3xl font-bold max-w-xs">
+            {partialWord.split('').map((char, index) => (
+              <motion.div 
+                key={index} 
+                initial={{ y: -10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: index * 0.05, duration: 0.3 }}
+                className={`w-8 h-12 flex items-center justify-center ${char === '_' ? 'bg-background/50 rounded-md shadow-sm' : ''}`}
+              >
+                {char === '_' ? '-' : char}
+              </motion.div>
+            ))}
           </div>
         </div>
-      )}
+        
+        {/* Visual connector */}
+        <div className="h-8 w-6 flex justify-center">
+          <div className="w-0.5 h-full bg-primary/30"></div>
+        </div>
+        <div className="flex justify-center items-center w-8 h-8 rounded-full bg-primary/15 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </div>
       
       <div className="w-full max-w-xs space-y-3">
         <div className="text-center text-sm font-medium">
@@ -226,7 +171,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
               <path d="M12 20h9"></path>
               <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
             </svg>
-            {mode === 'dictation' ? "Type what you hear" : "Type the complete word"}
+            Type the complete word
           </motion.div>
         </div>
         
@@ -244,7 +189,7 @@ export function QuizMode({ mode, onCorrectAnswer, onWrongAnswer, onNextWord }: Q
             id="quiz-input"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            placeholder={mode === 'dictation' ? "Type the word here..." : "Type the full word here..."}
+            placeholder="Type the full word here..."
             className="text-center text-lg shadow-none border bg-card/95 placeholder:text-foreground/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0"
             disabled={hasSubmitted}
             autoComplete="off"

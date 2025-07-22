@@ -6,21 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Initialize speech synthesis and load voices
-export function initSpeechSynthesis() {
-  if ('speechSynthesis' in window) {
-    // Load voices if they're available
-    window.speechSynthesis.getVoices()
-    
-    // Some browsers need this event to properly load voices
-    if (window.speechSynthesis.onvoiceschanged !== undefined) {
-      window.speechSynthesis.onvoiceschanged = function() {
-        console.log('Voices loaded:', window.speechSynthesis.getVoices().length)
-      }
-    }
-  }
-}
-
 // Type definition for vocabulary items
 interface VocabularyItem {
   word: string;
@@ -76,38 +61,4 @@ export function isPartialWordCorrect(userInput: string, word: string, partialWor
   }).join('')
   
   return expectedWord.toLowerCase() === word.toLowerCase()
-}
-
-// Convert text to speech with improved voice selection
-export function speakWord(word: string) {
-  if ('speechSynthesis' in window) {
-    // Cancel any ongoing speech first
-    window.speechSynthesis.cancel()
-    
-    // Add a small delay to ensure previous speech is fully cancelled
-    setTimeout(() => {
-      // Create a new utterance with the word
-      const utterance = new SpeechSynthesisUtterance(word)
-      utterance.rate = 0.8 // Slightly slower for clarity
-      utterance.pitch = 1.0 // Neutral pitch
-      utterance.volume = 1.0 // Full volume
-      
-      // Try to select a clear voice if available
-      const voices = window.speechSynthesis.getVoices()
-      const preferredVoices = voices.filter(voice => 
-        (voice.name.includes('Google') || voice.name.includes('Female') || 
-         voice.name.includes('Samantha') || voice.name.includes('Alex')) && 
-        voice.lang.includes('en')
-      )
-      
-      if (preferredVoices.length > 0) {
-        utterance.voice = preferredVoices[0]
-      }
-      
-      // Speak the word once
-      window.speechSynthesis.speak(utterance)
-    }, 150)
-    return true
-  }
-  return false
 }
